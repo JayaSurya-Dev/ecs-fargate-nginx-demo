@@ -2,36 +2,37 @@ version: 0.2
 
 env:
   variables:
-    AWS_ACCOUNT_ID: "686585749867"         # <— replace later
-    AWS_REGION: "ap-south-1"               # <— your region
-    ECR_REPO_APP: "ecs-demo-app"           # <— ECR repo name for app
-    ECR_REPO_NGINX: "ecs-demo-nginx"       # <— ECR repo name for nginx
-    CONTAINER_APP_NAME: "app"              # <— must match ECS task def container name
-    CONTAINER_NGINX_NAME: "nginx"          # <— must match ECS task def container name
+    AWS_ACCOUNT_ID: "686585749867"
+    AWS_REGION: "ap-south-1"
+    ECR_REPO_APP: "ecs-demo-app"
+    ECR_REPO_NGINX: "ecs-demo-nginx"
+    CONTAINER_APP_NAME: "app"
+    CONTAINER_NGINX_NAME: "nginx"
 
 phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
       - aws --version
-      - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
-      - IMAGE_TAG=${CODEBUILD_RESOLVED_SOURCE_VERSION:0:7}
+      - aws ecr get-login-password --region "$AWS_REGION" | docker login --username AWS --password-stdin "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com"
+      # Use POSIX-safe way to derive a 7-char tag; fallback to timestamp if empty
+      - IMAGE_TAG="$(printf '%s' "$CODEBUILD_RESOLVED_SOURCE_VERSION" | cut -c1-7)"; if [ -z "$IMAGE_TAG" ]; then IMAGE_TAG="$(date +%Y%m%d%H%M%S)"; fi
   build:
     commands:
       - echo Build images...
-      - docker build -t $ECR_REPO_APP:latest -t $ECR_REPO_APP:$IMAGE_TAG ./app
-      - docker build -t $ECR_REPO_NGINX:latest -t $ECR_REPO_NGINX:$IMAGE_TAG ./nginx
-      - docker tag $ECR_REPO_APP:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_APP:$IMAGE_TAG
-      - docker tag $ECR_REPO_APP:latest   $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_APP:latest
-      - docker tag $ECR_REPO_NGINX:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NGINX:$IMAGE_TAG
-      - docker tag $ECR_REPO_NGINX:latest   $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NGINX:latest
+      - docker build -t "$ECR_REPO_APP:latest" -t "$ECR_REPO_APP:$IMAGE_TAG" ./app
+      - docker build -t "$ECR_REPO_NGINX:latest" -t "$ECR_REPO_NGINX:$IMAGE_TAG" ./nginx
+      - docker tag "$ECR_REPO_APP:$IMAGE_TAG"     "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_APP:$IMAGE_TAG"
+      - docker tag "$ECR_REPO_APP:latest"         "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_APP:latest"
+      - docker tag "$ECR_REPO_NGINX:$IMAGE_TAG"   "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NGINX:$IMAGE_TAG"
+      - docker tag "$ECR_REPO_NGINX:latest"       "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NGINX:latest"
   post_build:
     commands:
       - echo Pushing images to ECR...
-      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_APP:$IMAGE_TAG
-      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_APP:latest
-      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NGINX:$IMAGE_TAG
-      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NGINX:latest
+      - docker push "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_APP:$IMAGE_TAG"
+      - docker push "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_APP:latest"
+      - docker push "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NGINX:$IMAGE_TAG"
+      - docker push "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NGINX:latest"
       - printf '[{"name":"%s","imageUri":"%s"},{"name":"%s","imageUri":"%s"}]' \
           "$CONTAINER_APP_NAME"   "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_APP:$IMAGE_TAG" \
           "$CONTAINER_NGINX_NAME" "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NGINX:$IMAGE_TAG" \
