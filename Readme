@@ -1,0 +1,14 @@
+# ECS Fargate + Nginx Reverse Proxy (CI/CD with CodePipeline)
+
+Two-container task:
+- **app**: Python HTTP server serving static `index.html` on port 8080
+- **nginx**: reverse proxy on port 80 → `app:8080`
+
+CI/CD:
+- CodePipeline (GitHub source) → CodeBuild (build & push to ECR) → ECS deploy (uses `imagedefinitions.json`)
+
+Next:
+- Create ECR repos: `ecs-demo-app`, `ecs-demo-nginx`
+- Create ECS cluster/service + ALB
+- Wire CodePipeline to deploy
+- Route53 subdomain → ALB (ACM/HTTPS optional)
