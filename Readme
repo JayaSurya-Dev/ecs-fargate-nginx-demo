@@ -7,7 +7,7 @@ Two-container task:
 CI/CD:
 - CodePipeline (GitHub source) → CodeBuild (build & push to ECR) → ECS deploy (uses `imagedefinitions.json`)
 
-Next:
+Next::
 - Create ECR repos: `ecs-demo-app`, `ecs-demo-nginx`
 - Create ECS cluster/service + ALB
 - Wire CodePipeline to deploy
