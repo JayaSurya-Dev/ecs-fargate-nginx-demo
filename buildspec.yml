@@ -15,31 +15,35 @@ phases:
       - echo Logging in to Amazon ECR...
       - aws --version
       - aws ecr get-login-password --region "$AWS_REGION" | docker login --username AWS --password-stdin "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com"
-      # Use POSIX-safe way to derive a 7-char tag; fallback to timestamp if empty
       - IMAGE_TAG="$(printf '%s' "$CODEBUILD_RESOLVED_SOURCE_VERSION" | cut -c1-7)"; if [ -z "$IMAGE_TAG" ]; then IMAGE_TAG="$(date +%Y%m%d%H%M%S)"; fi
+
   build:
     commands:
       - echo Build images...
-      - docker build -t "$ECR_REPO_APP:latest" -t "$ECR_REPO_APP:$IMAGE_TAG" ./app
+      - docker build -t "$ECR_REPO_APP:latest"   -t "$ECR_REPO_APP:$IMAGE_TAG"   ./app
       - docker build -t "$ECR_REPO_NGINX:latest" -t "$ECR_REPO_NGINX:$IMAGE_TAG" ./nginx
       - docker tag "$ECR_REPO_APP:$IMAGE_TAG"     "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_APP:$IMAGE_TAG"
       - docker tag "$ECR_REPO_APP:latest"         "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_APP:latest"
       - docker tag "$ECR_REPO_NGINX:$IMAGE_TAG"   "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NGINX:$IMAGE_TAG"
       - docker tag "$ECR_REPO_NGINX:latest"       "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NGINX:latest"
+
   post_build:
     commands:
-      - echo "==== imagedefinitions.json ===="
-      - cat imagedefinitions.json
       - echo Pushing images to ECR...
       - docker push "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_APP:$IMAGE_TAG"
       - docker push "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_APP:latest"
       - docker push "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NGINX:$IMAGE_TAG"
       - docker push "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NGINX:latest"
-      - printf '[{"name":"%s","imageUri":"%s"},{"name":"%s","imageUri":"%s"}]' \
+      # CREATE the file first
+      - |
+        printf '[{"name":"%s","imageUri":"%s"},{"name":"%s","imageUri":"%s"}]\n' \
           "$CONTAINER_APP_NAME"   "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_APP:$IMAGE_TAG" \
           "$CONTAINER_NGINX_NAME" "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NGINX:$IMAGE_TAG" \
-        > imagedefinitions.json
+          > imagedefinitions.json
+      # THEN show it so we can verify names match ECS task containers
+      - echo "==== imagedefinitions.json ===="
+      - cat imagedefinitions.json
+
 artifacts:
   files:
     - imagedefinitions.json
-
