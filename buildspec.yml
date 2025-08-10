@@ -28,6 +28,8 @@ phases:
       - docker tag "$ECR_REPO_NGINX:latest"       "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NGINX:latest"
   post_build:
     commands:
+      - echo "==== imagedefinitions.json ===="
+      - cat imagedefinitions.json
       - echo Pushing images to ECR...
       - docker push "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_APP:$IMAGE_TAG"
       - docker push "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_APP:latest"
@@ -40,3 +42,4 @@ phases:
 artifacts:
   files:
     - imagedefinitions.json
+
