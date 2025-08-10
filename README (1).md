@@ -1,6 +1,6 @@
 # ECS Fargate Nginx Reverse Proxy with CI/CD & Custom Domain
 
-## 📌 Overview
+## Overview
 This project demonstrates a **production-style AWS ECS Fargate deployment** using:
 - **Two-container task** (Static HTML app + Nginx reverse proxy)
 - **AWS CodePipeline + CodeBuild** for full CI/CD
@@ -13,8 +13,9 @@ This project demonstrates a **production-style AWS ECS Fargate deployment** usin
 
 ---
 
-## 📐 Architecture Diagram
-![AWS ECS Fargate CI/CD Architecture](docs/aws-ecs-cicd-architecture.png)
+##  Architecture Diagram
+  <img width="1536" height="1024" alt="aws ci cd pipeline architecute diagram" src="https://github.com/user-attachments/assets/993af5b5-6f11-4d28-9ce6-414a0ab8ae52" />
+
 
 ---
 
@@ -46,7 +47,7 @@ This project demonstrates a **production-style AWS ECS Fargate deployment** usin
 
 ---
 
-## 🚀 CI/CD Flow
+##  CI/CD Flow
 
 1. **Developer pushes to `main`**
    - CodeStar Connection webhook triggers **CodePipeline**.
@@ -70,7 +71,7 @@ This project demonstrates a **production-style AWS ECS Fargate deployment** usin
 
 ---
 
-## 🔑 IAM Roles & Policies
+##  IAM Roles & Policies
 
 ### CodePipeline Service Role
 - `codebuild:StartBuild`
@@ -88,7 +89,7 @@ This project demonstrates a **production-style AWS ECS Fargate deployment** usin
 
 ---
 
-## ⚠ Challenges Faced & Solutions
+##  Challenges Faced & Solutions
 
 | Challenge | Cause | Solution |
 |-----------|-------|----------|
@@ -101,7 +102,7 @@ This project demonstrates a **production-style AWS ECS Fargate deployment** usin
 
 ---
 
-## ✅ Verification Checklist
+##  Verification Checklist
 - [x] CodeStar Connection = Connected
 - [x] Source branch = `main`
 - [x] Build output artifact name matches Deploy input
@@ -111,6 +112,3 @@ This project demonstrates a **production-style AWS ECS Fargate deployment** usin
 - [x] `curl http://app.suryasblog.online` returns latest HTML
 
 ---
-
-## 📄 License
-MIT License. See `LICENSE` file.
