@@ -34,16 +34,17 @@ phases:
       - docker push "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_APP:latest"
       - docker push "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NGINX:$IMAGE_TAG"
       - docker push "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NGINX:latest"
-      # CREATE the file first
+  
       - |
         printf '[{"name":"%s","imageUri":"%s"},{"name":"%s","imageUri":"%s"}]\n' \
           "$CONTAINER_APP_NAME"   "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_APP:$IMAGE_TAG" \
           "$CONTAINER_NGINX_NAME" "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NGINX:$IMAGE_TAG" \
           > imagedefinitions.json
-      # THEN show it so we can verify names match ECS task containers
+     
       - echo "==== imagedefinitions.json ===="
       - cat imagedefinitions.json
 
 artifacts:
   files:
     - imagedefinitions.json
+
