@@ -31,7 +31,7 @@ This project demonstrates a **production-style AWS ECS Fargate deployment** usin
 - **ECR**: `ecs-demo-app`, `ecs-demo-nginx`
 - **ECS**: Cluster `ecs-demo-cluster`, Service `ecs-demo-service` (Fargate)
 - **ALB**: Public, target group health check path `/health`
-- **Route53 or Hostinger DNS**: CNAME `app → <ALB DNS name>`
+- **Hostinger DNS**: CNAME `app → <ALB DNS name>`
 
 ### 3) Local Code Structure
 ```plaintext
@@ -82,7 +82,6 @@ This project demonstrates a **production-style AWS ECS Fargate deployment** usin
 ### CodeBuild Service Role
 - ECR push/pull permissions
 - CloudWatch Logs
-- S3 (if used for artifacts)
 
 ### ECS Task Execution Role
 - `AmazonECSTaskExecutionRolePolicy`
