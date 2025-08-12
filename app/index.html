@@ -7,13 +7,13 @@
   <meta name="description" content="Jaya Surya S — Aspiring Cloud & DevOps Engineer. AWS and Azure certified. Serverless, CI/CD, Containers." />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" as="style">
-  <link rel="stylesheet" href="Styles.css" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <!-- Accessibility skip link -->
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- Status / announcement (mock, no JS) -->
+  <!-- Status / announcement -->
   <div class="status-bar" role="status" aria-live="polite">
     <span class="pulse" aria-hidden="true"></span>
     Deploying reliable services on AWS & Azure — CI/CD, containers, and serverless.
@@ -25,6 +25,13 @@
         <span class="dot" aria-hidden="true"></span>
         <span class="brand-text">Jaya Surya</span>
       </div>
+
+      <!-- Mobile toggle (CSS only) -->
+      <input id="nav-toggle" class="nav-toggle" type="checkbox" aria-label="Open navigation" />
+      <label class="hamburger" for="nav-toggle" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </label>
+
       <nav class="links" aria-label="Primary">
         <a class="btn" href="#about">About</a>
         <a class="btn" href="#skills">Skills</a>
@@ -57,7 +64,7 @@
         </div>
         <div class="cta-row">
           <a class="btn-primary" href="#contact">Let’s connect</a>
-          <!-- Adjust the path to your deployed PDF if different -->
+          <!-- Change the href to your deployed PDF path if different -->
           <a class="btn-ghost" href="JayaSurya_cv.pdf" download>Download Resume (PDF)</a>
         </div>
       </div>
@@ -162,7 +169,7 @@
             </div>
             <div class="back">
               <ul class="bullets">
-                <li>S3‑triggered Lambdas with retries & DLQ</li>
+                <li>S3‑triggered Lambdas with retries &amp; DLQ</li>
                 <li>Idempotent processing; SQS buffering</li>
                 <li>Structured logs + metrics</li>
               </ul>
@@ -189,7 +196,7 @@
               <ul class="bullets">
                 <li>Blue/Green‑ready Nginx config</li>
                 <li>Least‑privilege IAM for CI</li>
-                <li>Health checks & autoscaling</li>
+                <li>Health checks &amp; autoscaling</li>
               </ul>
               <div class="links">
                 <a class="btn-link" href="#pipeline">See CI/CD Flow</a>
@@ -214,7 +221,7 @@
               <ul class="bullets">
                 <li>Throughput‑aware partitioning</li>
                 <li>Resilient function retries</li>
-                <li>Dashboards for latency & lag</li>
+                <li>Dashboards for latency &amp; lag</li>
               </ul>
               <div class="links">
                 <a class="btn-link" href="#diagram-azure">View Diagram</a>
@@ -231,25 +238,25 @@
         <h3 id="diagram-aws-title">AWS Serverless Flow (Simplified)</h3>
         <svg viewBox="0 0 800 220" role="img" aria-label="S3 to Lambda to SQS to DynamoDB flow">
           <!-- nodes -->
-          <g class="node s3"><rect x="20" y="60" width="140" height="80" rx="14"/><text x="90" y="110">S3</text></g>
-          <g class="node lambda"><rect x="200" y="60" width="160" height="80" rx="14"/><text x="280" y="110">Lambda</text></g>
-          <g class="node sqs"><rect x="400" y="60" width="140" height="80" rx="14"/><text x="470" y="110">SQS</text></g>
-          <g class="node dynamo"><rect x="580" y="60" width="180" height="80" rx="14"/><text x="670" y="110">DynamoDB</text></g>
+          <g class="node s3"><rect x="20" y="60" width="140" height="80" rx="14"></rect><text x="90" y="110">S3</text></g>
+          <g class="node lambda"><rect x="200" y="60" width="160" height="80" rx="14"></rect><text x="280" y="110">Lambda</text></g>
+          <g class="node sqs"><rect x="400" y="60" width="140" height="80" rx="14"></rect><text x="470" y="110">SQS</text></g>
+          <g class="node dynamo"><rect x="580" y="60" width="180" height="80" rx="14"></rect><text x="670" y="110">DynamoDB</text></g>
           <!-- arrows -->
-          <path class="arrow" d="M160,100 L200,100"/>
-          <path class="arrow" d="M360,100 L400,100"/>
-          <path class="arrow" d="M540,100 L580,100"/>
+          <path class="arrow" d="M160,100 L200,100"></path>
+          <path class="arrow" d="M360,100 L400,100"></path>
+          <path class="arrow" d="M540,100 L580,100"></path>
         </svg>
       </div>
 
       <div class="diagram card" id="diagram-azure" aria-labelledby="diagram-azure-title">
         <h3 id="diagram-azure-title">Azure Streaming Flow (Simplified)</h3>
         <svg viewBox="0 0 800 220" role="img" aria-label="Event Hubs to Functions to Cosmos DB">
-          <g class="node eventhubs"><rect x="40" y="60" width="190" height="80" rx="14"/><text x="135" y="110">Event Hubs</text></g>
-          <g class="node func"><rect x="270" y="60" width="200" height="80" rx="14"/><text x="370" y="110">Azure Functions</text></g>
-          <g class="node cosmos"><rect x="510" y="60" width="240" height="80" rx="14"/><text x="630" y="110">Cosmos DB</text></g>
-          <path class="arrow" d="M230,100 L270,100"/>
-          <path class="arrow" d="M470,100 L510,100"/>
+          <g class="node eventhubs"><rect x="40" y="60" width="190" height="80" rx="14"></rect><text x="135" y="110">Event Hubs</text></g>
+          <g class="node func"><rect x="270" y="60" width="200" height="80" rx="14"></rect><text x="370" y="110">Azure Functions</text></g>
+          <g class="node cosmos"><rect x="510" y="60" width="240" height="80" rx="14"></rect><text x="630" y="110">Cosmos DB</text></g>
+          <path class="arrow" d="M230,100 L270,100"></path>
+          <path class="arrow" d="M470,100 L510,100"></path>
         </svg>
       </div>
     </section>
@@ -259,7 +266,7 @@
       <h2 class="section-title"><span class="bar" aria-hidden="true"></span> CI/CD Flow (GitHub → ECR → ECS Fargate)</h2>
       <ol class="pipeline card" aria-label="CI/CD Steps">
         <li>
-          <span class="step">Commit & Push</span>
+          <span class="step">Commit &amp; Push</span>
           <span class="desc">Main branch triggers pipeline</span>
         </li>
         <li>
@@ -283,7 +290,7 @@
           <span class="desc">Custom domain</span>
         </li>
       </ol>
-      <p class="small note">This is a static visual; in your deployed version, you can later wire these labels to logs or badges if you decide to add JS.</p>
+      <p class="small note">This is a static visual; you can later wire these labels to logs or badges if you add JS.</p>
     </section>
 
     <!-- TERMINAL (fun authenticity) -->
