@@ -290,24 +290,10 @@
           <span class="desc">Custom domain</span>
         </li>
       </ol>
-      <p class="small note">This is a static visual; you can later wire these labels to logs or badges if you add JS.</p>
     </section>
 
     <!-- TERMINAL (fun authenticity) -->
-    <section class="section">
-      <h2 class="section-title"><span class="bar" aria-hidden="true"></span> Terminal Snapshot</h2>
-      <div class="terminal card" role="group" aria-label="Sample terminal output">
-        <div class="term-bar"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="title">jaya@cloud:~</span></div>
-        <pre class="type">
-$ aws ecr describe-repositories --repository-names portfolio
-$ docker build -t portfolio:$(git rev-parse --short HEAD) .
-$ aws ecr get-login-password | docker login --username AWS --password-stdin 1234567890.dkr.ecr.ap-south-1.amazonaws.com
-$ docker push 1234567890.dkr.ecr.ap-south-1.amazonaws.com/portfolio:abcd123
-$ aws ecs update-service --cluster portfolio --service fe --force-new-deployment
-        </pre>
-      </div>
-    </section>
-
+    
     <!-- EDUCATION -->
     <section id="education" class="section">
       <h2 class="section-title"><span class="bar" aria-hidden="true"></span> Education</h2>
