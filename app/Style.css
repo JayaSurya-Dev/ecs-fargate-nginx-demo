@@ -272,3 +272,81 @@ pre{ margin:0; padding:16px; white-space:pre-wrap; color:#d0f0ff; }
   body{ background:#fff; color:#000; }
   .card{ box-shadow:none; border-color:#ccc; }
 }
+/* ===== Mobile nav (CSS only) */
+.nav-toggle{ display:none; }
+.hamburger{
+  display:none;
+  width:40px; height:34px; border:1px solid var(--line); border-radius:10px;
+  align-items:center; justify-content:center; cursor:pointer; background:var(--chip);
+}
+.hamburger span{ display:block; width:22px; height:2px; background:var(--text); margin:3px 0; transition:transform .2s ease, opacity .2s ease; }
+
+/* collapse behavior */
+@media (max-width: 760px){
+  .links{
+    position:absolute; right:0; top:64px; /* under header */
+    display:grid; gap:10px;
+    background:var(--card);
+    border:1px solid var(--line); border-radius:14px;
+    width: min(92vw, 360px);
+    padding:12px;
+    box-shadow:var(--shadow);
+    opacity:0; transform: translateY(-8px); pointer-events:none;
+    transition: opacity .18s ease, transform .18s ease;
+  }
+  .nav{ position:relative; }
+  .hamburger{ display:flex; }
+  /* show menu when checked */
+  .nav-toggle:checked ~ .links{
+    opacity:1; transform: translateY(0); pointer-events:auto;
+  }
+  /* animate hamburger into "X" */
+  .nav-toggle:checked + .hamburger span:nth-child(1){ transform: translateY(5px) rotate(45deg); }
+  .nav-toggle:checked + .hamburger span:nth-child(2){ opacity:0; }
+  .nav-toggle:checked + .hamburger span:nth-child(3){ transform: translateY(-5px) rotate(-45deg); }
+}
+
+/* ===== Mobile layout refinements */
+@media (max-width: 960px){
+  .container{ width: min(1000px, 94vw); }
+  .hero{ grid-template-columns: 1fr; gap:16px; }
+  .about{ padding:22px; }
+  .contact{ padding:16px; }
+  .grid.cols-3{ grid-template-columns: 1fr; }
+}
+
+@media (max-width: 760px){
+  body{ line-height:1.55; }
+  .headline{ font-size: clamp(24px, 7vw, 34px); }
+  .subhead{ font-size: 15px; }
+  .cta-row .btn-primary, .cta-row .btn-ghost{ padding: 10px 12px; }
+  .chips{ gap:8px; }
+  .badge-row{ gap:6px; }
+
+  /* meters: single column */
+  .meter{ grid-template-columns: 1fr; gap:8px; }
+  .meter .label{ font-size:14px; }
+
+  /* projects: already 1 col at 780px, tighten cards */
+  .projects{ gap:14px; }
+  .front, .back{ min-height: 200px; padding:16px; }
+
+  /* pipeline: 2 columns on phones */
+  .pipeline{ grid-template-columns: repeat(2, 1fr); gap:10px; padding:14px; }
+  .pipeline li{ padding:12px; }
+  .pipeline .desc{ font-size:12px; }
+
+  /* diagrams: add inner padding & prevent overflow */
+  .diagram{ padding:12px; }
+  .diagram svg{ max-width: 100%; height: auto; }
+
+  /* footer stack */
+  .site-footer{ flex-direction:column; align-items:flex-start; gap:6px; font-size:13px; }
+}
+
+/* Extra small tweaks */
+@media (max-width: 380px){
+  .btn, .btn-primary, .btn-ghost{ font-size: 14px; }
+  .contact a{ padding:9px 10px; }
+  .badge, .chip{ font-size:12px; padding:6px 9px; }
+}
