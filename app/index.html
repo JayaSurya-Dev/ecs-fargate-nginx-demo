@@ -3,118 +3,33 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Jaya Surya  — Cloud Engineer</title>
-  <meta name="description" content="Jaya Surya S — Aspiring Cloud Engineer. AWS and Azure certified. Serverless, CI/CD, Containers." />
-  <style>
-    
-    :root {
-      --bg: #0b0d10;
-      --card: #111419;
-      --muted: #8b97a7;
-      --text: #eaf0f7;
-      --accent: #6aa7ff;
-      --accent-2: #7ef7c5;
-      --chip: #161a21;
-      --line: #1a1f27;
-      --radius: 18px;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-    }
-
-    @media (prefers-color-scheme: light) {
-      :root { --bg:#f6f8fb; --card:#ffffff; --muted:#536174; --text:#0d1117; --chip:#eef2f7; --line:#e7edf5; }
-    }
-
-    * { box-sizing: border-box; }
-    html,body { height: 100%; }
-    body {
-      margin: 0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      color: var(--text);
-      background: radial-gradient(1200px 600px at 120% -10%, rgba(106,167,255,.15), transparent 60%),
-                  radial-gradient(1200px 600px at -20% 0%, rgba(126,247,197,.10), transparent 60%),
-                  var(--bg);
-      line-height: 1.6;
-    }
-
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    .container { width: min(1100px, 92vw); margin: 0 auto; }
-
-    /* ===== Header / Hero ===== */
-    header {
-      padding: 42px 0 24px;
-      position: sticky; top: 0; backdrop-filter: blur(8px);
-      background: linear-gradient(180deg, rgba(11,13,16,.9), rgba(11,13,16,.4));
-      border-bottom: 1px solid var(--line);
-      z-index: 40;
-    }
-    .nav {
-      display: flex; gap: 18px; align-items: center; justify-content: space-between;
-    }
-    .brand { display:flex; align-items:center; gap:12px; font-weight: 800; letter-spacing:.3px; }
-    .brand .dot { width:10px; height:10px; border-radius:50%; background:linear-gradient(135deg,var(--accent),var(--accent-2)); box-shadow:0 0 0 4px rgba(106,167,255,.15); }
-    .nav a.btn { padding: 10px 14px; border:1px solid var(--line); border-radius: 999px; background: var(--chip); }
-
-    .hero { display:grid; grid-template-columns: 1.2fr .8fr; gap:32px; padding: 36px 0 24px; }
-    @media (max-width: 900px) { .hero { grid-template-columns: 1fr; } }
-
-    .card { background: var(--card); border:1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
-    .hero .about { padding: 28px; position: relative; overflow: hidden; }
-    .hero .about:after { content:""; position:absolute; inset:auto -40% -60% -40%; height: 160px; background: radial-gradient(500px 120px at 50% 0%, rgba(126,247,197,.16), transparent 70%); }
-
-    h1 { margin: 0 0 8px; font-size: clamp(28px, 5vw, 44px); letter-spacing:.2px; }
-    .title { font-weight: 600; font-size: 18px; color: var(--muted); }
-
-    .chips { display:flex; flex-wrap: wrap; gap:10px; margin: 16px 0 6px; }
-    .chip { background: var(--chip); border:1px solid var(--line); padding: 7px 12px; border-radius: 999px; font-size: 14px; }
-
-    .contact { padding: 22px; display:grid; gap:12px; }
-    .contact a { display:flex; gap:10px; align-items:center; padding: 10px 12px; border:1px solid var(--line); background: var(--chip); border-radius: 12px; }
-
-    /* ===== Sections ===== */
-    section { margin: 36px 0; }
-    .section-title { display:flex; align-items:center; gap:10px; margin: 0 0 16px; font-size: 18px; color: var(--muted); }
-    .section-title .bar { width: 26px; height: 3px; background: linear-gradient(90deg,var(--accent),var(--accent-2)); border-radius: 999px; }
-
-    /* Skills grid */
-    .grid { display:grid; gap: 16px; }
-    .grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
-    .grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
-    @media (max-width: 900px) { .grid.cols-3 { grid-template-columns: 1fr; } }
-
-    .skill { padding: 16px; border:1px solid var(--line); border-radius: 14px; background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.02)); display:flex; align-items:center; justify-content:space-between; gap:12px; }
-    .skill span { opacity:.9; }
-
-    /* Project cards */
-    .projects { display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    @media (max-width: 1100px) { .projects { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 780px) { .projects { grid-template-columns: 1fr; } }
-
-    .project { padding: 18px; border:1px solid var(--line); border-radius: 16px; background: var(--card); }
-    .project h3 { margin: 6px 0 8px; font-size: 18px; }
-    .project .stack { display:flex; gap:8px; flex-wrap:wrap; }
-    .project .stack .chip { padding: 5px 10px; font-size: 12px; }
-
-    /* Timeline */
-    .timeline { position:relative; padding-left: 18px; }
-    .timeline:before { content:""; position:absolute; left:7px; top:0; bottom:0; width:2px; background: var(--line); }
-    .edu { position:relative; padding: 10px 12px 10px 16px; border:1px solid var(--line); border-radius: 14px; background: var(--card); margin: 10px 0 10px 20px; }
-    .edu:before { content:""; position:absolute; left:-14px; top:16px; width:10px; height:10px; border-radius:50%; background:linear-gradient(135deg,var(--accent),var(--accent-2)); box-shadow:0 0 0 3px var(--bg); }
-
-    footer { margin: 46px 0 28px; padding-top: 18px; border-top: 1px dashed var(--line); color: var(--muted); font-size: 14px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
-    .small { color: var(--muted); font-size: 14px; }
-    .btn-primary { display:inline-flex; gap:10px; align-items:center; padding: 10px 14px; border-radius: 10px; border:1px solid var(--line); background: linear-gradient(180deg, rgba(106,167,255,.15), rgba(126,247,197,.10)); }
-  </style>
+  <title>Jaya Surya — Cloud / DevOps Engineer</title>
+  <meta name="description" content="Jaya Surya S — Aspiring Cloud & DevOps Engineer. AWS and Azure certified. Serverless, CI/CD, Containers." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" as="style">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header>
+  <!-- Accessibility skip link -->
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Status / announcement (mock, no JS) -->
+  <div class="status-bar" role="status" aria-live="polite">
+    <span class="pulse" aria-hidden="true"></span>
+    Deploying reliable services on AWS & Azure — CI/CD, containers, and serverless.
+  </div>
+
+  <header class="site-header" role="banner">
     <div class="container nav">
-      <div class="brand"><span class="dot"></span> <span>Jaya Surya</span></div>
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="brand-text">Jaya Surya</span>
+      </div>
       <nav class="links" aria-label="Primary">
         <a class="btn" href="#about">About</a>
         <a class="btn" href="#skills">Skills</a>
         <a class="btn" href="#projects">Projects</a>
+        <a class="btn" href="#pipeline">CI/CD</a>
         <a class="btn" href="#education">Education</a>
         <a class="btn" href="#certs">Certifications</a>
         <a class="btn" href="#contact">Contact</a>
@@ -122,145 +37,320 @@
     </div>
   </header>
 
-  <main class="container">
-    <div class="hero">
-      <!-- About card -->
-      <section id="about" class="card about">
-        <h1>Jaya surya S</h1>
-        <div class="title">Aspiring Cloud Engineer. AWS and Azure Certified</div>
-        <p>
-          I build reliable cloud systems with a focus on serverless patterns, containers, and automation. Hands on with AWS, Azure, Docker, GitHub Actions, and CI/CD. I enjoy turning ideas into scalable, secure, and observable services.
+  <main id="main" class="container">
+    <!-- HERO -->
+    <section id="about" class="hero">
+      <div class="card about">
+        <h1 class="headline">Jaya Surya S</h1>
+        <p class="subhead">Aspiring Cloud Engineer · AWS & Azure Certified</p>
+        <p class="lede">
+          I build reliable cloud systems with serverless patterns, containers, and automation.
+          Hands‑on with AWS, Azure, Docker, Nginx, and CI/CD. I love turning ideas into scalable,
+          secure, and observable services.
         </p>
         <div class="chips" aria-label="Areas of interest">
           <span class="chip">Cloud Engineering</span>
           <span class="chip">DevOps</span>
-          <span class="chip">Automation</span>
           <span class="chip">SRE</span>
+          <span class="chip">Automation</span>
           <span class="chip">Cloud Security</span>
         </div>
-        <p>
-          <a class="btn-primary" href="#contact" title="Get in touch">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M22 12C22 6.48 17.52 2 12 2S2 6.48 2 12c0 4.84 3.44 8.86 8.01 9.8v-6.93H7.9V12h2.11V9.79c0-2.08 1.24-3.24 3.13-3.24.91 0 1.86.16 1.86.16v2.05h-1.05c-1.04 0-1.37.65-1.37 1.31V12h2.33l-.37 2.87h-1.96V21.8C18.56 20.86 22 16.84 22 12Z" fill="currentColor"/></svg>
-            Let us connect
-          </a>
-        </p>
-      </section>
+        <div class="cta-row">
+          <a class="btn-primary" href="#contact">Let’s connect</a>
+          <!-- Adjust the path to your deployed PDF if different -->
+          <a class="btn-ghost" href="JayaSurya_cv.pdf" download>Download Resume (PDF)</a>
+        </div>
+      </div>
 
-      <!-- Quick contact card -->
-      <aside class="card contact" id="contact">
+      <!-- Quick contact + badges -->
+      <aside id="contact" class="card contact" aria-label="Contact">
         <a href="mailto:suryasenthil1706@gmail.com" title="Email">
           <span>📧</span> <span>suryasenthil1706@gmail.com</span>
         </a>
-        <a href="tel:+919003827178" title="Phone"><span>📱</span> <span>+91 90038 27178</span></a>
-        <a href="https://www.linkedin.com/in/jayasurya-senthilkumar-b17214244/" target="_blank" rel="noreferrer noopener" title="LinkedIn"><span>🔗</span> <span>LinkedIn</span></a>
-        <a href="https://github.com/JayaSurya-Dev" target="_blank" rel="noreferrer noopener" title="GitHub"><span>💻</span> <span>github.com/JayaSurya-Dev</span></a>
-        <a href="#" title="Resume" id="resume-link"><span>📄</span> <span>Download Resume (PDF)</span></a>
+        <a href="tel:+919003827178" title="Phone">
+          <span>📱</span> <span>+91 90038 27178</span>
+        </a>
+        <a href="https://www.linkedin.com/in/jayasurya-senthilkumar-b17214244/" target="_blank" rel="noreferrer noopener" title="LinkedIn">
+          <span>🔗</span> <span>LinkedIn</span>
+        </a>
+        <a href="https://github.com/JayaSurya-Dev" target="_blank" rel="noreferrer noopener" title="GitHub">
+          <span>💻</span> <span>github.com/JayaSurya-Dev</span>
+        </a>
+        <div class="badge-row" aria-label="Highlights">
+          <span class="badge">AWS</span>
+          <span class="badge">Azure</span>
+          <span class="badge">Docker</span>
+          <span class="badge">Nginx</span>
+          <span class="badge">CI/CD</span>
+        </div>
         <div class="small">Tamil Nadu, India</div>
       </aside>
-    </div>
+    </section>
 
-    <!-- Skills -->
-    <section id="skills">
-      <h2 class="section-title"><span class="bar"></span> Technical Skills</h2>
+    <!-- SKILLS -->
+    <section id="skills" class="section">
+      <h2 class="section-title"><span class="bar" aria-hidden="true"></span> Technical Skills</h2>
+
       <div class="grid cols-3">
-        <div class="skill"><strong>AWS</strong> <span>EC2, S3, Lambda, ECS, CloudWatch, IAM, SQS, DynamoDB, SNS, SSM, Route 53, ACM</span></div>
-        <div class="skill"><strong>Azure</strong> <span>Event Hubs, Functions, Cosmos DB, Monitor, Key Vault</span></div>
-        <div class="skill"><strong>DevOps</strong> <span>Docker, CI/CD with GitHub Actions, Nginx, Jenkins (Basics)</span></div>
-        <div class="skill"><strong>Programming</strong> <span>Python, Java, JavaScript (Node.js), Shell Scripting</span></div>
-        <div class="skill"><strong>Tooling</strong> <span>VS Code, Postman, Linux, Networking</span></div>
-        <div class="skill"><strong>Soft Skills</strong> <span>Ownership, Team Collaboration, Communication</span></div>
+        <div class="skill card">
+          <strong>AWS</strong>
+          <span>EC2, S3, Lambda, ECS, CloudWatch, IAM, SQS, DynamoDB, SNS, SSM, Route 53, ACM</span>
+        </div>
+        <div class="skill card">
+          <strong>Azure</strong>
+          <span>Event Hubs, Functions, Cosmos DB, Monitor, Key Vault</span>
+        </div>
+        <div class="skill card">
+          <strong>DevOps</strong>
+          <span>Docker, Nginx, GitHub Actions, Jenkins (Basics)</span>
+        </div>
+        <div class="skill card">
+          <strong>Programming</strong>
+          <span>Python, Java, JavaScript (Node.js), Shell</span>
+        </div>
+        <div class="skill card">
+          <strong>Tooling</strong>
+          <span>Linux, Networking, VS Code, Postman</span>
+        </div>
+        <div class="skill card">
+          <strong>Soft Skills</strong>
+          <span>Ownership, Collaboration, Communication</span>
+        </div>
+      </div>
+
+      <!-- Visual meters -->
+      <div class="meters">
+        <div class="meter">
+          <span class="label">AWS</span>
+          <span class="bar"><span style="width:90%"></span></span>
+        </div>
+        <div class="meter">
+          <span class="label">Azure</span>
+          <span class="bar"><span style="width:80%"></span></span>
+        </div>
+        <div class="meter">
+          <span class="label">Docker / Containers</span>
+          <span class="bar"><span style="width:85%"></span></span>
+        </div>
+        <div class="meter">
+          <span class="label">CI/CD</span>
+          <span class="bar"><span style="width:85%"></span></span>
+        </div>
+        <div class="meter">
+          <span class="label">Nginx</span>
+          <span class="bar"><span style="width:75%"></span></span>
+        </div>
       </div>
     </section>
 
-    <!-- Projects -->
-    <section id="projects">
-      <h2 class="section-title"><span class="bar"></span> Featured Projects</h2>
+    <!-- PROJECTS (flip cards) -->
+    <section id="projects" class="section">
+      <h2 class="section-title"><span class="bar" aria-hidden="true"></span> Featured Projects</h2>
+
       <div class="projects">
-        <article class="project">
-          <div class="small">2025</div>
-          <h3>Serverless File Processor</h3>
-          <p>Event driven pipeline that processes files uploaded to S3 using Lambda functions, queues for reliability, and DynamoDB for metadata. Observability with CloudWatch and secret management with SSM.</p>
-          <div class="stack">
-            <span class="chip">AWS Lambda</span>
-            <span class="chip">S3</span>
-            <span class="chip">SQS</span>
-            <span class="chip">DynamoDB</span>
-            <span class="chip">CloudWatch</span>
+        <!-- Card 1 -->
+        <article class="project flip">
+          <div class="flip-inner">
+            <div class="front">
+              <div class="small">2025</div>
+              <h3>Serverless File Processor</h3>
+              <p>Event‑driven pipeline on AWS to process S3 uploads with Lambda; reliable with SQS; metadata in DynamoDB; alerts in CloudWatch.</p>
+              <div class="stack">
+                <span class="chip">Lambda</span><span class="chip">S3</span><span class="chip">SQS</span>
+                <span class="chip">DynamoDB</span><span class="chip">CloudWatch</span>
+              </div>
+            </div>
+            <div class="back">
+              <ul class="bullets">
+                <li>S3‑triggered Lambdas with retries & DLQ</li>
+                <li>Idempotent processing; SQS buffering</li>
+                <li>Structured logs + metrics</li>
+              </ul>
+              <div class="links">
+                <a class="btn-link" href="#diagram-aws">View Diagram</a>
+              </div>
+            </div>
           </div>
         </article>
-        <article class="project">
-          <div class="small">2025</div>
-          <h3>Secure Web App Deployment with CI/CD</h3>
-          <p>Deployed a full stack web app on EC2 with containers, TLS via ACM, and a custom domain on Route 53. Automated CI/CD with GitHub Actions and used Nginx as a reverse proxy. Metrics via CloudWatch and parameters in SSM.</p>
-          <div class="stack">
-            <span class="chip">EC2</span>
-            <span class="chip">Docker</span>
-            <span class="chip">GitHub Actions</span>
-            <span class="chip">Route 53</span>
-            <span class="chip">ACM</span>
-            <span class="chip">Nginx</span>
+
+        <!-- Card 2 -->
+        <article class="project flip">
+          <div class="flip-inner">
+            <div class="front">
+              <div class="small">2025</div>
+              <h3>Secure Web App with CI/CD</h3>
+              <p>Containerized app on EC2 with Nginx reverse proxy; TLS via ACM; Route 53 custom domain; GitHub Actions pipeline.</p>
+              <div class="stack">
+                <span class="chip">EC2</span><span class="chip">Docker</span><span class="chip">Nginx</span>
+                <span class="chip">Route 53</span><span class="chip">ACM</span>
+              </div>
+            </div>
+            <div class="back">
+              <ul class="bullets">
+                <li>Blue/Green‑ready Nginx config</li>
+                <li>Least‑privilege IAM for CI</li>
+                <li>Health checks & autoscaling</li>
+              </ul>
+              <div class="links">
+                <a class="btn-link" href="#pipeline">See CI/CD Flow</a>
+              </div>
+            </div>
           </div>
         </article>
-        <article class="project">
-          <div class="small">2025</div>
-          <h3>Real Time Analytics on Azure</h3>
-          <p>Streaming pipeline that ingests data via Event Hubs, processes with Azure Functions, stores in Cosmos DB, and visualizes insights in Power BI. Monitoring with Azure Monitor and secrets in Key Vault.</p>
-          <div class="stack">
-            <span class="chip">Event Hubs</span>
-            <span class="chip">Azure Functions</span>
-            <span class="chip">Cosmos DB</span>
-            <span class="chip">Power BI</span>
-            <span class="chip">Key Vault</span>
+
+        <!-- Card 3 -->
+        <article class="project flip">
+          <div class="flip-inner">
+            <div class="front">
+              <div class="small">2025</div>
+              <h3>Real‑Time Analytics on Azure</h3>
+              <p>Ingest with Event Hubs, process in Functions, store in Cosmos DB, and visualize in Power BI; observability via Azure Monitor.</p>
+              <div class="stack">
+                <span class="chip">Event Hubs</span><span class="chip">Functions</span>
+                <span class="chip">Cosmos DB</span><span class="chip">Power BI</span>
+              </div>
+            </div>
+            <div class="back">
+              <ul class="bullets">
+                <li>Throughput‑aware partitioning</li>
+                <li>Resilient function retries</li>
+                <li>Dashboards for latency & lag</li>
+              </ul>
+              <div class="links">
+                <a class="btn-link" href="#diagram-azure">View Diagram</a>
+              </div>
+            </div>
           </div>
         </article>
       </div>
     </section>
 
-    <!-- Education -->
-    <section id="education">
-      <h2 class="section-title"><span class="bar"></span> Education</h2>
+    <!-- INLINE ARCHITECTURE DIAGRAMS (SVG) -->
+    <section class="section diagrams">
+      <div class="diagram card" id="diagram-aws" aria-labelledby="diagram-aws-title">
+        <h3 id="diagram-aws-title">AWS Serverless Flow (Simplified)</h3>
+        <svg viewBox="0 0 800 220" role="img" aria-label="S3 to Lambda to SQS to DynamoDB flow">
+          <!-- nodes -->
+          <g class="node s3"><rect x="20" y="60" width="140" height="80" rx="14"/><text x="90" y="110">S3</text></g>
+          <g class="node lambda"><rect x="200" y="60" width="160" height="80" rx="14"/><text x="280" y="110">Lambda</text></g>
+          <g class="node sqs"><rect x="400" y="60" width="140" height="80" rx="14"/><text x="470" y="110">SQS</text></g>
+          <g class="node dynamo"><rect x="580" y="60" width="180" height="80" rx="14"/><text x="670" y="110">DynamoDB</text></g>
+          <!-- arrows -->
+          <path class="arrow" d="M160,100 L200,100"/>
+          <path class="arrow" d="M360,100 L400,100"/>
+          <path class="arrow" d="M540,100 L580,100"/>
+        </svg>
+      </div>
+
+      <div class="diagram card" id="diagram-azure" aria-labelledby="diagram-azure-title">
+        <h3 id="diagram-azure-title">Azure Streaming Flow (Simplified)</h3>
+        <svg viewBox="0 0 800 220" role="img" aria-label="Event Hubs to Functions to Cosmos DB">
+          <g class="node eventhubs"><rect x="40" y="60" width="190" height="80" rx="14"/><text x="135" y="110">Event Hubs</text></g>
+          <g class="node func"><rect x="270" y="60" width="200" height="80" rx="14"/><text x="370" y="110">Azure Functions</text></g>
+          <g class="node cosmos"><rect x="510" y="60" width="240" height="80" rx="14"/><text x="630" y="110">Cosmos DB</text></g>
+          <path class="arrow" d="M230,100 L270,100"/>
+          <path class="arrow" d="M470,100 L510,100"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- CI/CD PIPELINE WIDGET -->
+    <section id="pipeline" class="section">
+      <h2 class="section-title"><span class="bar" aria-hidden="true"></span> CI/CD Flow (GitHub → ECR → ECS Fargate)</h2>
+      <ol class="pipeline card" aria-label="CI/CD Steps">
+        <li>
+          <span class="step">Commit & Push</span>
+          <span class="desc">Main branch triggers pipeline</span>
+        </li>
+        <li>
+          <span class="step">CodeBuild</span>
+          <span class="desc">Build Docker image</span>
+        </li>
+        <li>
+          <span class="step">ECR</span>
+          <span class="desc">Push versioned image</span>
+        </li>
+        <li>
+          <span class="step">ECS Fargate</span>
+          <span class="desc">Deploy task revision</span>
+        </li>
+        <li>
+          <span class="step">ALB</span>
+          <span class="desc">Serve via HTTPS (ACM)</span>
+        </li>
+        <li>
+          <span class="step">Route 53</span>
+          <span class="desc">Custom domain</span>
+        </li>
+      </ol>
+      <p class="small note">This is a static visual; in your deployed version, you can later wire these labels to logs or badges if you decide to add JS.</p>
+    </section>
+
+    <!-- TERMINAL (fun authenticity) -->
+    <section class="section">
+      <h2 class="section-title"><span class="bar" aria-hidden="true"></span> Terminal Snapshot</h2>
+      <div class="terminal card" role="group" aria-label="Sample terminal output">
+        <div class="term-bar"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="title">jaya@cloud:~</span></div>
+        <pre class="type">
+$ aws ecr describe-repositories --repository-names portfolio
+$ docker build -t portfolio:$(git rev-parse --short HEAD) .
+$ aws ecr get-login-password | docker login --username AWS --password-stdin 1234567890.dkr.ecr.ap-south-1.amazonaws.com
+$ docker push 1234567890.dkr.ecr.ap-south-1.amazonaws.com/portfolio:abcd123
+$ aws ecs update-service --cluster portfolio --service fe --force-new-deployment
+        </pre>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="section">
+      <h2 class="section-title"><span class="bar" aria-hidden="true"></span> Education</h2>
       <div class="timeline">
-        <div class="edu">
+        <div class="edu card">
           <strong>MCA, Computer Applications</strong> — Kongu Engineering College, Tamil Nadu
-          <div class="small">2024 to 2026</div>
+          <div class="small">2024 – 2026</div>
         </div>
-        <div class="edu">
+        <div class="edu card">
           <strong>B.Sc, Computer Science</strong> — K.S.R College of Arts and Science, Tamil Nadu
-          <div class="small">2020 to 2023</div>
+          <div class="small">2020 – 2023</div>
         </div>
-        <div class="edu">
+        <div class="edu card">
           <strong>HSC (12th)</strong> — Wisdom Matric Hr Sec School, Tamil Nadu
-          <div class="small">2019 to 2020</div>
+          <div class="small">2019 – 2020</div>
         </div>
-        <div class="edu">
+        <div class="edu card">
           <strong>SSLC (10th)</strong> — Wisdom Matric Hr Sec School, Tamil Nadu
-          <div class="small">2017 to 2018</div>
+          <div class="small">2017 – 2018</div>
         </div>
       </div>
     </section>
 
-    <!-- Certifications -->
-    <section id="certs">
-      <h2 class="section-title"><span class="bar"></span> Certifications</h2>
-      <div class="grid cols-2">
-        <div class="skill"><strong>AWS Certified Solutions Architect</strong> <span>Associate</span></div>
-        <div class="skill"><strong>Microsoft Azure Data Fundamentals</strong> <span>DP-900</span></div>
-        <div class="skill"><strong>GitHub Foundations</strong> <span></span></div>
-        <div class="skill"><strong>Python</strong> <span>Liveware Technologies</span></div>
+    <!-- CERTIFICATIONS -->
+    <section id="certs" class="section">
+      <h2 class="section-title"><span class="bar" aria-hidden="true"></span> Certifications</h2>
+      <div class="badge-grid">
+        <div class="cert card" title="AWS Certified Solutions Architect – Associate">
+          <span class="cert-chip aws">AWS</span>
+          <strong>Solutions Architect — Associate</strong>
+        </div>
+        <div class="cert card" title="Microsoft Azure Data Fundamentals (DP‑900)">
+          <span class="cert-chip azure">Azure</span>
+          <strong>Data Fundamentals — DP‑900</strong>
+        </div>
+        <div class="cert card">
+          <span class="cert-chip neutral">GitHub</span>
+          <strong>GitHub Foundations</strong>
+        </div>
+        <div class="cert card">
+          <span class="cert-chip neutral">Python</span>
+          <strong>Liveware Technologies</strong>
+        </div>
       </div>
     </section>
 
-    <footer>
-      <span>© <span id="year"></span> Jaya Surya S</span>
-      <span>Open to Cloud Engineering, DevOps, and SRE </span>
+    <footer class="site-footer">
+      <div>© <span id="year">2025</span> Jaya Surya S</div>
+      <div>Open to Cloud Engineering, DevOps, and SRE Opportunities</div>
     </footer>
   </main>
-
-  <script>
-    // Update year
-    document.getElementById('year').textContent = new Date().getFullYear();
-    // Replace resume link if running in your local deployment
-    // Example: document.getElementById('resume-link').href = 'files/JayaSurya_cv.pdf';
-  </script>
 </body>
 </html>
