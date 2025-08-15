@@ -13,9 +13,14 @@ This project demonstrates a **production-style AWS ECS Fargate deployment** usin
 
 ---
 
-##  Architecture Diagram
-  <img width="1536" height="1024" alt="aws ci cd pipeline architecute diagram" src="https://github.com/user-attachments/assets/993af5b5-6f11-4d28-9ce6-414a0ab8ae52" />
+##  CI/CD 
+<img width="1508" height="325" alt="{6CB3171C-24F7-4D31-A8A6-EEE6F32D48CD}" src="https://github.com/user-attachments/assets/fa222888-a769-46e0-af35-ce5820f8b234" />
 
+
+## VPC
+<img width="1483" height="643" alt="{5889A3FC-C4A3-4E5E-BC10-58373CCD1A83}" src="https://github.com/user-attachments/assets/9b273d0c-4239-49aa-b673-c35c043d7c63" />
+flow
+<img width="1790" height="685" alt="{608E0EEF-C486-4C8E-867C-F17B41729F87}" src="https://github.com/user-attachments/assets/b2ad92d7-fe44-40ed-935a-48a836dba107" />
 
 ---
 
@@ -88,26 +93,7 @@ This project demonstrates a **production-style AWS ECS Fargate deployment** usin
 
 ---
 
-##  Challenges Faced & Solutions
 
-| Challenge | Cause | Solution |
-|-----------|-------|----------|
-| `host not found in upstream` in Nginx | Containers in same Fargate task don’t use Docker bridge | Use `127.0.0.1:8080` in Nginx upstream |
-| Deploy error: “container does not exist” | Wrong `imagedefinitions.json` keys | Match ECS container names exactly |
-| `imagedefinitions.json` missing | Wrong artifact output in CodeBuild | Generate in `post_build` and match pipeline artifact name |
-| ECR login denied | Missing IAM permissions | Add `ecr:GetAuthorizationToken` to CodeBuild role |
-| ALB targets unhealthy | Wrong health check path or SG rules | Serve `/health` with HTTP 200 from Nginx |
-| DNS not resolving | Missing/incorrect CNAME record | Create CNAME in Hostinger → ALB DNS name |
 
 ---
 
-##  Verification Checklist
-- [x] CodeStar Connection = Connected
-- [x] Source branch = `main`
-- [x] Build output artifact name matches Deploy input
-- [x] Pipeline runs automatically on push
-- [x] ECS service updates without manual steps
-- [x] ALB target group healthy
-- [x] `curl http://app.suryasblog.online` returns latest HTML
-
----
